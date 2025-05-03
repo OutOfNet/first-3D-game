@@ -1,10 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=12 format=2]
 
 [sub_resource type="SphereShape" id=1]
 
 [sub_resource type="SphereMesh" id=2]
 radial_segments = 16
 rings = 8
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 1, 1, 0.25 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.2, 0.5, 0.25 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.2, 0.4, 0.15 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.2, 0.55, 0.2 )
+
+[sub_resource type="CubeMesh" id=7]
+size = Vector3( 0.175, 0.55, 0.175 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 0.175, 0.55, 0.175 )
+
+[sub_resource type="CubeMesh" id=9]
+size = Vector3( 0.175, 0.55, 0.175 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 0.2, 0.4, 0.2 )
+
+[sub_resource type="CubeMesh" id=10]
+size = Vector3( 0.175, 0.55, 0.175 )
 
 [node name="Player" type="Spatial"]
 
@@ -14,8 +41,124 @@ rings = 8
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody"]
+[node name="head" type="MeshInstance" parent="KinematicBody"]
 mesh = SubResource( 2 )
 
+[node name="hand1" type="Spatial" parent="KinematicBody"]
+transform = Transform( -0.173648, 0.221534, -0.959567, 0, -0.97437, -0.224951, -0.984808, -0.0390623, 0.169198, 1.6, -0.9, 0 )
+
+[node name="palm" type="MeshInstance" parent="KinematicBody/hand1"]
+mesh = SubResource( 3 )
+
+[node name="fingers" type="Spatial" parent="KinematicBody/hand1"]
+
+[node name="finger1" type="Spatial" parent="KinematicBody/hand1/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger1"]
+transform = Transform( -4.29471e-08, -0.186181, 0.982515, -8.13823e-09, 0.982515, 0.186181, -1, 0, -4.37114e-08, -0.60447, -0.190778, 0.0261766 )
+mesh = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656981, 0.228754, 0.0245145 )
+mesh = SubResource( 5 )
+
+[node name="finger2" type="Spatial" parent="KinematicBody/hand1/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger2"]
+transform = Transform( 0.999477, -0.0320015, -0.00435196, 0.0306704, 0.982726, -0.182504, 0.0101171, 0.182275, 0.983195, -0.392817, 0.66979, 0.0258396 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger2"]
+transform = Transform( 0.999477, -0.032187, -0.00265098, 0.0306704, 0.971681, -0.234296, 0.0101171, 0.234093, 0.972161, -0.413959, 1.19743, 0.138076 )
+mesh = SubResource( 7 )
+
+[node name="finger3" type="Spatial" parent="KinematicBody/hand1/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger3"]
+transform = Transform( 0.999666, -0.0255282, -0.00395145, 0.0246767, 0.98895, -0.146181, 0.00763936, 0.146035, 0.98925, -0.130176, 0.753027, 0.0406142 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger3"]
+transform = Transform( 0.99941, -0.0341648, -0.00328511, 0.0325322, 0.97344, -0.226615, 0.01094, 0.226375, 0.973979, -0.146732, 1.27846, 0.137648 )
+mesh = SubResource( 8 )
+
+[node name="finger4" type="Spatial" parent="KinematicBody/hand1/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger4"]
+transform = Transform( 0.999789, -0.0202049, -0.00344209, 0.0196688, 0.993043, -0.116088, 0.00576371, 0.115996, 0.993233, 0.132308, 0.656493, 0.00880003 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger4"]
+transform = Transform( 0.999562, -0.0293883, -0.00322853, 0.0281481, 0.979366, -0.20012, 0.00904298, 0.199941, 0.979766, 0.118302, 1.18572, 0.0918658 )
+mesh = SubResource( 9 )
+
+[node name="finger5" type="Spatial" parent="KinematicBody/hand1/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger5"]
+transform = Transform( 0.999999, 1.49012e-08, -1.49012e-08, -2.6077e-08, 0.987699, -0.156365, -1.49012e-08, 0.156365, 0.987699, 0.392965, 0.631106, 0.0198873 )
+mesh = SubResource( 11 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger5"]
+transform = Transform( 0.999998, 1.95578e-08, -1.93715e-07, -5.21541e-08, 0.987698, -0.156365, 1.49012e-08, 0.156365, 0.987699, 0.394424, 1.06745, 0.0807105 )
+mesh = SubResource( 10 )
+
+[node name="hand2" type="Spatial" parent="KinematicBody"]
+transform = Transform( 0.173648, -0.221534, 0.959567, 0, -0.97437, -0.224951, -0.984808, -0.0390623, 0.169198, -1.6, -0.9, 0 )
+
+[node name="palm" type="MeshInstance" parent="KinematicBody/hand2"]
+mesh = SubResource( 3 )
+
+[node name="fingers" type="Spatial" parent="KinematicBody/hand2"]
+
+[node name="finger1" type="Spatial" parent="KinematicBody/hand2/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger1"]
+transform = Transform( -4.29471e-08, -0.186181, 0.982515, -8.13823e-09, 0.982515, 0.186181, -1, 0, -4.37114e-08, -0.60447, -0.190778, 0.0261766 )
+mesh = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656981, 0.228754, 0.0245145 )
+mesh = SubResource( 5 )
+
+[node name="finger2" type="Spatial" parent="KinematicBody/hand2/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
+transform = Transform( 0.999477, -0.0320015, -0.00435196, 0.0306704, 0.982726, -0.182504, 0.0101171, 0.182275, 0.983195, -0.392817, 0.66979, 0.0258396 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
+transform = Transform( 0.999477, -0.032187, -0.00265098, 0.0306704, 0.971681, -0.234296, 0.0101171, 0.234093, 0.972161, -0.413959, 1.19743, 0.138076 )
+mesh = SubResource( 7 )
+
+[node name="finger3" type="Spatial" parent="KinematicBody/hand2/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
+transform = Transform( 0.999666, -0.0255282, -0.00395145, 0.0246767, 0.98895, -0.146181, 0.00763936, 0.146035, 0.98925, -0.130176, 0.753027, 0.0406142 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
+transform = Transform( 0.99941, -0.0341648, -0.00328511, 0.0325322, 0.97344, -0.226615, 0.01094, 0.226375, 0.973979, -0.146732, 1.27846, 0.137648 )
+mesh = SubResource( 8 )
+
+[node name="finger4" type="Spatial" parent="KinematicBody/hand2/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
+transform = Transform( 0.999789, -0.0202049, -0.00344209, 0.0196688, 0.993043, -0.116088, 0.00576371, 0.115996, 0.993233, 0.132308, 0.656493, 0.00880003 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
+transform = Transform( 0.999562, -0.0293883, -0.00322853, 0.0281481, 0.979366, -0.20012, 0.00904298, 0.199941, 0.979766, 0.118302, 1.18572, 0.0918658 )
+mesh = SubResource( 9 )
+
+[node name="finger5" type="Spatial" parent="KinematicBody/hand2/fingers"]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
+transform = Transform( 0.999999, 1.49012e-08, -1.49012e-08, -2.6077e-08, 0.987699, -0.156365, -1.49012e-08, 0.156365, 0.987699, 0.392965, 0.631106, 0.0198873 )
+mesh = SubResource( 11 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
+transform = Transform( 0.999998, 1.95578e-08, -1.93715e-07, -5.21541e-08, 0.987698, -0.156365, 1.49012e-08, 0.156365, 0.987699, 0.394424, 1.06745, 0.0807105 )
+mesh = SubResource( 10 )
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 3, 5 )
+transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.5, 7.5 )
