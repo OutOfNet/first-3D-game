@@ -3,6 +3,7 @@ extends KinematicBody
 const GRAVITY = 150
 const MAX_HEALTH = 150
 const JUMP_FORCE = 50
+const CAMERA_NEUTRAL_ROTATION = -0.35
 
 export var speed = 15.0
 
@@ -10,10 +11,14 @@ var target_rotation = 0
 var velocity = Vector3.ZERO
 var health = MAX_HEALTH
 var is_rotating = false
+var camera
 
 
 
-func rotate_player(rotate_direction):
+func _ready():
+	camera = get_node("Camera")
+
+func rotate_camera(rotate_direction):
 	if rotate_direction == "left" && is_rotating == false:
 		if is_equal_approx(3.141593, rotation.y) == true:
 			rotation.y = -3.141593
@@ -60,8 +65,6 @@ func _physics_process(delta):
 	elif direction == Vector3.ZERO:
 		velocity.x = 0
 		velocity.z = 0
-	
-	print(rotation.y)
 
 	velocity.y -= delta * GRAVITY
 	velocity = move_and_slide(velocity, Vector3.UP, true)
@@ -69,9 +72,36 @@ func _physics_process(delta):
 
 func _input(_event):
 	if Input.is_action_just_pressed("camera_left"):
-		rotate_player("left")
+		rotate_camera("left")
 	elif Input.is_action_just_pressed("camera_right"):
-		rotate_player("right")
+		rotate_camera("right")
+	
+	if Input.is_action_just_pressed("camera_up"):
+		target_rotation = camera.rotation.x + 0.775
+		# Smoothly rotates the camera upwards.
+		while camera.rotation.x <= target_rotation - 0.025:
+			print(camera.rotation.x)
+			camera.rotation.x -= (camera.rotation.x - target_rotation) / 4
+			yield(get_tree().create_timer(0.025), "timeout")
+			print("rotated successfully")
+		camera.rotation.x = target_rotation
+		print(camera.rotation.x)
+	elif Input.is_action_just_pressed("camera_down"):
+		target_rotation = camera.rotation.x - 0.775
+		# Smoothly rotates the camera downwards.
+		while camera.rotation.x >= target_rotation + 0.025:
+			camera.rotation.x -= (camera.rotation.x - target_rotation) / 4
+			yield(get_tree().create_timer(0.025), "timeout")
+		camera.rotation.x = target_rotation
+		print("fully finished rotating")
+	elif Input.is_action_just_released("camera_down") or Input.is_action_just_released("camera_up"):
+		target_rotation = CAMERA_NEUTRAL_ROTATION
+		# Smoothly rotates the camera towards the neutral rotation.
+		while camera.rotation.x <= target_rotation + 0.025 && camera.rotation.x >= target_rotation - 0.025:
+			camera.rotation.x -= (camera.rotation.x - target_rotation) / 4
+			yield(get_tree().create_timer(0.025), "timeout")
+		camera.rotation.x = target_rotation
+		print(camera.rotation.x)
 
 	if Input.is_action_just_pressed("jump"):
 		velocity.y += JUMP_FORCE
