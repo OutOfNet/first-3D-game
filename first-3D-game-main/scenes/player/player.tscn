@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/player/player_management.gd" type="Script" id=1]
 
@@ -39,158 +39,6 @@ size = Vector3( 0.2, 0.4, 0.2 )
 [sub_resource type="CubeMesh" id=10]
 size = Vector3( 0.175, 0.55, 0.175 )
 
-[sub_resource type="Animation" id=14]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("hand2:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1.6, -0.9, 0.000195554 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("hand2:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -13, 80, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:translation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("hand1:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13, 100, 180 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("hand2/fingers/finger2/MeshInstance:translation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.386679, 0.723332, 0.0739243 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("hand2/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 16.6551, -0.27182, 0.673153 ) ]
-}
-
-[sub_resource type="Animation" id=15]
-resource_name = "walk_start"
-length = 0.3
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("hand2:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 1.6, -0.9, 0.000195554 ), Vector3( 1.6, -0.9, -0.240123 ), Vector3( 1.6, -0.9, -1.09195 ), Vector3( 1.6, -0.9, -1.41535 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("hand2:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( -13, 80, 0 ), Vector3( -26.5159, 99.7664, 3.50006 ), Vector3( -18.2841, 107.122, 42.0094 ), Vector3( -19.8154, 112.53, 39.6274 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:translation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ), Vector3( -1.6, -0.9, 0.608053 ), Vector3( -1.11476, -0.792865, 1.46365 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("hand1:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 13, 100, 180 ), Vector3( 15.1148, 113.838, 175.202 ), Vector3( 36.4507, 131.431, 171.779 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("hand2/fingers/finger2/MeshInstance:translation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.386679, 0.723332, 0.0739243 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("hand2/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 16.6551, -0.27182, 0.673153 ) ]
-}
-
 [node name="Player" type="Spatial"]
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
@@ -205,7 +53,7 @@ generate_lightmap = false
 mesh = SubResource( 2 )
 
 [node name="hand1" type="Spatial" parent="KinematicBody"]
-transform = Transform( 0.173648, -0.221534, 0.959567, 1.47126e-07, -0.97437, -0.224951, 0.984808, 0.0390625, -0.169197, -1.6, -0.9, -0.000195554 )
+transform = Transform( 0.173648, -0.221534, 0.959567, 8.51822e-08, -0.97437, -0.224951, 0.984808, 0.0390624, -0.169198, -1.6, -0.9, -0.000195554 )
 
 [node name="hitbox" type="Area" parent="KinematicBody/hand1"]
 transform = Transform( 1, 0, 0, 0, 1, 1.30385e-08, 0, -1.30385e-08, 1, 0, 0, 0 )
@@ -270,7 +118,7 @@ transform = Transform( 0.999998, 1.95578e-08, -1.93715e-07, -5.21541e-08, 0.9876
 mesh = SubResource( 10 )
 
 [node name="hand2" type="Spatial" parent="KinematicBody"]
-transform = Transform( -0.173648, 0.221534, -0.959567, 0, -0.97437, -0.224951, 0.984808, 0.0390624, -0.169197, 1.6, -0.9, 0.000195554 )
+transform = Transform( -0.173648, 0.221534, -0.959567, 0, -0.97437, -0.224951, 0.984808, 0.0390623, -0.169197, 1.6, -0.9, 0.000195554 )
 
 [node name="hitbox" type="Area" parent="KinematicBody/hand2"]
 transform = Transform( 0.99638, -0.0849995, 0, 0.0849995, 0.996381, 0, 0, 0, -0.999999, 0.0419094, -0.0534662, 0.231587 )
@@ -295,44 +143,43 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656981, 0.228754, 0.0245145
 mesh = SubResource( 5 )
 
 [node name="finger2" type="Spatial" parent="KinematicBody/hand2/fingers"]
-transform = Transform( 1, 2.98023e-08, 0, 0, 1, 1.49012e-08, 1.49012e-08, -1.49012e-08, 1, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
-transform = Transform( 0.999902, -0.0131079, -0.00454511, 0.0112556, 0.95798, -0.28661, 0.00811099, 0.286532, 0.958036, -0.386679, 0.723332, 0.0739243 )
+transform = Transform( 0.999477, -0.0320015, -0.00435196, 0.0306704, 0.982726, -0.182504, 0.0101171, 0.182275, 0.983195, -0.392817, 0.66979, 0.0258396 )
 mesh = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
-transform = Transform( 0.999667, 0.0227671, -0.0119855, -0.0256673, 0.850234, -0.525779, -0.00177999, 0.525913, 0.850537, -0.388032, 1.19228, 0.287791 )
+transform = Transform( 0.999477, -0.032187, -0.00265098, 0.0306704, 0.971681, -0.234296, 0.0101171, 0.234093, 0.972161, -0.413959, 1.19743, 0.138076 )
 mesh = SubResource( 7 )
 
 [node name="finger3" type="Spatial" parent="KinematicBody/hand2/fingers"]
 
 [node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
-transform = Transform( 0.999899, -0.0134782, -0.0045248, 0.0116335, 0.958582, -0.284584, 0.00817291, 0.284503, 0.958641, -0.122454, 0.721952, 0.0783832 )
+transform = Transform( 0.999666, -0.0255282, -0.00395145, 0.0246767, 0.98895, -0.146181, 0.00763936, 0.146035, 0.98925, -0.130176, 0.753027, 0.0406142 )
 mesh = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
-transform = Transform( 0.999967, 0.00310457, -0.0073325, -0.00593987, 0.904109, -0.427263, 0.00530322, 0.427294, 0.904098, -0.126473, 1.22326, 0.26969 )
+transform = Transform( 0.99941, -0.0341648, -0.00328511, 0.0325322, 0.97344, -0.226615, 0.01094, 0.226375, 0.973979, -0.146732, 1.27846, 0.137648 )
 mesh = SubResource( 8 )
 
 [node name="finger4" type="Spatial" parent="KinematicBody/hand2/fingers"]
 
 [node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
-transform = Transform( 0.999989, 0.00371745, -0.00242175, -0.00420428, 0.968357, -0.249528, 0.00141759, 0.249536, 0.968365, 0.139907, 0.646799, 0.0507917 )
+transform = Transform( 0.999789, -0.0202049, -0.00344209, 0.0196688, 0.993043, -0.116088, 0.00576371, 0.115996, 0.993233, 0.132308, 0.656493, 0.00880003 )
 mesh = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
-transform = Transform( 0.999952, 0.00746701, -0.00616747, -0.00931047, 0.916509, -0.399906, 0.00266647, 0.399944, 0.916536, 0.142082, 1.14292, 0.220393 )
+transform = Transform( 0.999562, -0.0293883, -0.00322853, 0.0281481, 0.979366, -0.20012, 0.00904298, 0.199941, 0.979766, 0.118302, 1.18572, 0.0918658 )
 mesh = SubResource( 9 )
 
 [node name="finger5" type="Spatial" parent="KinematicBody/hand2/fingers"]
 
 [node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
-transform = Transform( 0.999801, 0.0198831, 0.000267565, -0.0190922, 0.96362, -0.266592, -0.00555858, 0.266535, 0.963809, 0.397762, 0.624986, 0.0463974 )
+transform = Transform( 0.999999, 1.49012e-08, -1.49012e-08, -2.6077e-08, 0.987699, -0.156365, -1.49012e-08, 0.156365, 0.987699, 0.392965, 0.631106, 0.0198873 )
 mesh = SubResource( 11 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
-transform = Transform( 0.998615, 0.0524093, -0.00419497, -0.0488915, 0.896312, -0.440718, -0.019338, 0.440314, 0.897636, 0.416731, 1.03899, 0.203978 )
+transform = Transform( 0.999998, 1.95578e-08, -1.93715e-07, -5.21541e-08, 0.987698, -0.156365, 1.49012e-08, 0.156365, 0.987699, 0.394424, 1.06745, 0.0807105 )
 mesh = SubResource( 10 )
 
 [node name="Camera" type="Camera" parent="KinematicBody"]
@@ -341,7 +188,3 @@ current = true
 
 [node name="Timer" type="Timer" parent="KinematicBody"]
 one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody"]
-anims/RESET = SubResource( 14 )
-anims/walk_start = SubResource( 15 )
