@@ -2,9 +2,9 @@ extends KinematicBody
 
 const GRAVITY = 150
 const MAX_HEALTH = 150
-const JUMP_FORCE = 50
 const CAMERA_NEUTRAL_ROTATION = -0.35
 const INT_MAX = 2147483647
+const movement_input = ["up", "down", "left", "right"]
 
 export var speed = 15.0
 
@@ -46,13 +46,10 @@ func rotate_camera(rotate_direction):
 		target_rotation.x = rotation.y + 0.785398
 		# Smoothly rotates the player along with the camera
 		while rotation.y <= target_rotation.x - 0.02:
-			print(rotation.y)
 			rotation.y -= (rotation.y - target_rotation.x) / 4
 			yield(get_tree().create_timer(0.0125), "timeout")
-			print("rotated successfully")
 		# When close enough, snaps the rotation to the target rotation
 		rotation.y = target_rotation.x
-		print(rotation.y)
 		is_rotating = false
 		
 	elif rotate_direction == "right" && is_rotating == false:
@@ -64,11 +61,8 @@ func rotate_camera(rotate_direction):
 		while rotation.y >= target_rotation.x + 0.02:
 			rotation.y -= (rotation.y - target_rotation.x) / 4
 			yield(get_tree().create_timer(0.0125), "timeout")
-			print("rotated successfully")
-			print(rotation.y)
 		# When close enough, snaps the rotation to the target rotation
 		rotation.y = target_rotation.x
-		print(rotation.y)
 		is_rotating = false
 
 
@@ -79,15 +73,16 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = move_toward(0, direction.x, .95) * speed
 		velocity.z = move_toward(0, direction.z, .95) * speed
+		get_node("AnimationPlayer").play("walk")
 	elif direction == Vector3.ZERO && range(-0.01, 0.01).has(velocity.x) == false && range(-0.01, 0.01).has(velocity.x) == false:
 		velocity.x -= velocity.x / 4
 		velocity.z -= velocity.z / 4
+		get_node("AnimationPlayer").play("idle")
 	elif direction == Vector3.ZERO:
 		velocity.x = 0
 		velocity.z = 0
 	
 	if camera_angles.has(rotation.y) == false && is_rotating == false:
-		print(find_closest(rotation.y, camera_angles), " | ", rotation.y)
 		rotation.y = find_closest(rotation.y, camera_angles)
 
 	velocity.y -= delta * GRAVITY
@@ -110,12 +105,9 @@ func _input(_event):
 			target_rotation.y = camera.rotation.x + 0.5
 			# Smoothly rotates the camera upwards.
 			while camera.rotation.x <= target_rotation.y - 0.025:
-				print(camera.rotation.x)
 				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 4
 				yield(get_tree().create_timer(0.0125), "timeout")
-				print("rotated successfully")
 			camera.rotation.x = target_rotation.y
-			print(camera.rotation.x)
 	elif Input.is_action_just_pressed("camera_down"):
 		if is_rotating == false:
 			is_rotating = true
@@ -126,7 +118,6 @@ func _input(_event):
 				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 4
 				yield(get_tree().create_timer(0.0125), "timeout")
 			camera.rotation.x = target_rotation.y
-			print("fully finished rotating")
 	if Input.is_action_just_released("camera_down") or Input.is_action_just_released("camera_up"):
 		target_rotation.y = CAMERA_NEUTRAL_ROTATION
 		yield(get_tree().create_timer(0.02), "timeout")
@@ -136,7 +127,3 @@ func _input(_event):
 			yield(get_tree().create_timer(0.0125), "timeout")
 		camera.rotation.x = target_rotation.y
 		is_rotating = false
-		print(camera.rotation.x)
-
-	if Input.is_action_just_pressed("jump"):
-		velocity.y += JUMP_FORCE
