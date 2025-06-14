@@ -4,7 +4,6 @@ const GRAVITY = 150
 const MAX_HEALTH = 150
 const CAMERA_NEUTRAL_ROTATION = -0.35
 const INT_MAX = 2147483647
-const movement_input = ["up", "down", "left", "right"]
 
 export var speed = 15.0
 
@@ -12,7 +11,21 @@ var target_rotation = Vector2.ZERO
 var velocity = Vector3.ZERO
 var health = MAX_HEALTH
 var is_rotating = false
+var is_attacking = false
 var camera
+var cooldowns_left = {
+	"attack_1": 2.0,
+	"attack_2": 4.0,
+	"attack_3": 6.0,
+	"attack_4": 10.0
+}
+
+var attack_cooldowns = {
+	"attack_1": false,
+	"attack_2": false,
+	"attack_3": false,
+	"attack_4": false
+}
 
 var camera_angles = [0, 0.785398, 1.570796, 2.356194, 3.141592, -3.141593, -2.356195, -1.570797, -0.785399, -0.000001]
 
@@ -73,11 +86,13 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = move_toward(0, direction.x, .95) * speed
 		velocity.z = move_toward(0, direction.z, .95) * speed
-		get_node("AnimationPlayer").play("walk")
+		if is_attacking == false:
+			get_node("AnimationPlayer").play("walk")
 	elif direction == Vector3.ZERO && range(-0.01, 0.01).has(velocity.x) == false && range(-0.01, 0.01).has(velocity.x) == false:
 		velocity.x -= velocity.x / 4
 		velocity.z -= velocity.z / 4
-		get_node("AnimationPlayer").play("idle")
+		if is_attacking == false:
+			get_node("AnimationPlayer").play("idle")
 	elif direction == Vector3.ZERO:
 		velocity.x = 0
 		velocity.z = 0
@@ -127,3 +142,16 @@ func _input(_event):
 			yield(get_tree().create_timer(0.0125), "timeout")
 		camera.rotation.x = target_rotation.y
 		is_rotating = false
+	
+	if Input.is_action_just_pressed("attack_1") && is_attacking == false && attack_cooldowns.attack_1 == false:
+		is_attacking = true
+		get_node("AnimationPlayer").play("slap")
+		attack_cooldowns.attack_1 = true
+		yield(get_tree().create_timer(1), "timeout")
+		is_attacking = false
+		for _i in range(0, 20):
+			yield(get_tree().create_timer(0.1), "timeout")
+			print("Attack 1 cooldown : ", cooldowns_left.attack_1)
+			cooldowns_left.attack_1 -= 0.1
+		cooldowns_left.attack_1 = 2
+		attack_cooldowns.attack_1 = false
