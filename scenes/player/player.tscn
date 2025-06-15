@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/player/player_management.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player/health_monitor.gd" type="Script" id=2]
+[ext_resource path="res://scripts/player/hitboxes/hitbox_2.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/HomeVideo.tres" type="DynamicFont" id=4]
 
 [sub_resource type="CapsuleShape" id=13]
 height = 2.40983
@@ -10,35 +12,17 @@ height = 2.40983
 radial_segments = 16
 rings = 8
 
-[sub_resource type="BoxShape" id=12]
-extents = Vector3( 0.81973, 1.15416, 0.311269 )
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 0.75, 0.75, 0.75 )
 
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 1, 1, 0.25 )
+[sub_resource type="SphereMesh" id=22]
+radius = 0.75
+height = 1.5
+radial_segments = 8
+rings = 4
 
-[sub_resource type="CubeMesh" id=4]
-size = Vector3( 0.2, 0.5, 0.25 )
-
-[sub_resource type="CubeMesh" id=5]
-size = Vector3( 0.2, 0.4, 0.15 )
-
-[sub_resource type="CubeMesh" id=6]
-size = Vector3( 0.2, 0.55, 0.2 )
-
-[sub_resource type="CubeMesh" id=7]
-size = Vector3( 0.175, 0.55, 0.175 )
-
-[sub_resource type="CubeMesh" id=8]
-size = Vector3( 0.175, 0.55, 0.175 )
-
-[sub_resource type="CubeMesh" id=9]
-size = Vector3( 0.175, 0.55, 0.175 )
-
-[sub_resource type="CubeMesh" id=11]
-size = Vector3( 0.2, 0.4, 0.2 )
-
-[sub_resource type="CubeMesh" id=10]
-size = Vector3( 0.175, 0.55, 0.175 )
+[sub_resource type="BoxShape" id=24]
+extents = Vector3( 0.75, 0.75, 0.75 )
 
 [sub_resource type="Animation" id=17]
 resource_name = "Default Animation Template"
@@ -55,7 +39,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0.487619, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("hand1:translation")
+tracks/1/path = NodePath("hand2:translation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -64,10 +48,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ) ]
+"values": [ Vector3( 1.6, -0.9, 0.000195554 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:rotation_degrees")
+tracks/2/path = NodePath("hand2:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -76,511 +60,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 13, 100, 180 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("hand2:translation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1.6, -0.9, 0.000195554 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("hand2:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
 "values": [ Vector3( -13, 80, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("hand1/fingers/finger1/MeshInstance:translation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.60447, -0.190778, 0.0261766 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("hand1/fingers/finger1/MeshInstance:rotation_degrees")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -10.73, 90, -4.74584e-07 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("hand1/fingers/finger1/MeshInstance2:translation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.656981, 0.228754, 0.0245145 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("hand1/fingers/finger1/MeshInstance2:rotation_degrees")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("hand1/fingers/finger2/MeshInstance:translation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.392817, 0.66979, 0.0258397 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("hand1/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 10.5156, -0.253605, 1.78759 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("hand1/fingers/finger2/MeshInstance2:translation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.413959, 1.19743, 0.138076 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("hand1/fingers/finger2/MeshInstance2:rotation_degrees")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.5502, -0.156233, 1.8079 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("hand1/fingers/finger3/MeshInstance:translation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.130176, 0.753027, 0.0406142 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("hand1/fingers/finger3/MeshInstance:rotation_degrees")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.40569, -0.228851, 1.42937 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("hand1/fingers/finger3/MeshInstance2:translation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.146732, 1.27846, 0.137648 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("hand1/fingers/finger3/MeshInstance2:rotation_degrees")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.0979, -0.193242, 1.9141 ) ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("hand1/fingers/finger4/MeshInstance:translation")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.132308, 0.656493, 0.00880003 ) ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("hand1/fingers/finger4/MeshInstance:rotation_degrees")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.65602, -0.199, 1.135 ) ]
-}
-tracks/19/type = "value"
-tracks/19/path = NodePath("hand1/fingers/finger4/MeshInstance2:translation")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.118302, 1.18572, 0.0918658 ) ]
-}
-tracks/20/type = "value"
-tracks/20/path = NodePath("hand1/fingers/finger4/MeshInstance2:rotation_degrees")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 11.544, -0.188795, 1.64629 ) ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("hand1/fingers/finger5/MeshInstance:translation")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.392965, 0.631106, 0.0198873 ) ]
-}
-tracks/22/type = "value"
-tracks/22/path = NodePath("hand1/fingers/finger5/MeshInstance:rotation_degrees")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99597, 6.17242e-07, -1.51271e-06 ) ]
-}
-tracks/23/type = "value"
-tracks/23/path = NodePath("hand1/fingers/finger5/MeshInstance2:translation")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.394424, 1.06745, 0.0807105 ) ]
-}
-tracks/24/type = "value"
-tracks/24/path = NodePath("hand1/fingers/finger5/MeshInstance2:rotation_degrees")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, -1.32685e-06, -3.02543e-06 ) ]
-}
-tracks/25/type = "value"
-tracks/25/path = NodePath("hand2/fingers/finger1/MeshInstance:translation")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.60447, -0.190778, 0.0261766 ) ]
-}
-tracks/26/type = "value"
-tracks/26/path = NodePath("hand2/fingers/finger1/MeshInstance:rotation_degrees")
-tracks/26/interp = 1
-tracks/26/loop_wrap = true
-tracks/26/imported = false
-tracks/26/enabled = true
-tracks/26/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -10.73, 90, -4.74584e-07 ) ]
-}
-tracks/27/type = "value"
-tracks/27/path = NodePath("hand2/fingers/finger1/MeshInstance2:translation")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.656981, 0.228754, 0.0245145 ) ]
-}
-tracks/28/type = "value"
-tracks/28/path = NodePath("hand2/fingers/finger1/MeshInstance2:rotation_degrees")
-tracks/28/interp = 1
-tracks/28/loop_wrap = true
-tracks/28/imported = false
-tracks/28/enabled = true
-tracks/28/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
-}
-tracks/29/type = "value"
-tracks/29/path = NodePath("hand2/fingers/finger2/MeshInstance:translation")
-tracks/29/interp = 1
-tracks/29/loop_wrap = true
-tracks/29/imported = false
-tracks/29/enabled = true
-tracks/29/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.386679, 0.723332, 0.0739243 ) ]
-}
-tracks/30/type = "value"
-tracks/30/path = NodePath("hand2/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/30/interp = 1
-tracks/30/loop_wrap = true
-tracks/30/imported = false
-tracks/30/enabled = true
-tracks/30/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 16.6551, -0.27182, 0.673153 ) ]
-}
-tracks/31/type = "value"
-tracks/31/path = NodePath("hand2/fingers/finger2/MeshInstance2:translation")
-tracks/31/interp = 1
-tracks/31/loop_wrap = true
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.387623, 1.19967, 0.201366 ) ]
-}
-tracks/32/type = "value"
-tracks/32/path = NodePath("hand2/fingers/finger2/MeshInstance2:rotation_degrees")
-tracks/32/interp = 1
-tracks/32/loop_wrap = true
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.55, -0.806978, -1.72902 ) ]
-}
-tracks/33/type = "value"
-tracks/33/path = NodePath("hand2/fingers/finger3/MeshInstance:translation")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.130079, 0.73168, 0.0362476 ) ]
-}
-tracks/34/type = "value"
-tracks/34/path = NodePath("hand2/fingers/finger3/MeshInstance:rotation_degrees")
-tracks/34/interp = 1
-tracks/34/loop_wrap = true
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.40598, -0.27, 0.694998 ) ]
-}
-tracks/35/type = "value"
-tracks/35/path = NodePath("hand2/fingers/finger3/MeshInstance2:translation")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.132937, 1.25463, 0.133801 ) ]
-}
-tracks/36/type = "value"
-tracks/36/path = NodePath("hand2/fingers/finger3/MeshInstance2:rotation_degrees")
-tracks/36/interp = 1
-tracks/36/loop_wrap = true
-tracks/36/imported = false
-tracks/36/enabled = true
-tracks/36/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.098, -0.465, -0.376 ) ]
-}
-tracks/37/type = "value"
-tracks/37/path = NodePath("hand2/fingers/finger4/MeshInstance:translation")
-tracks/37/interp = 1
-tracks/37/loop_wrap = true
-tracks/37/imported = false
-tracks/37/enabled = true
-tracks/37/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.134071, 0.654245, 0.0185407 ) ]
-}
-tracks/38/type = "value"
-tracks/38/path = NodePath("hand2/fingers/finger4/MeshInstance:rotation_degrees")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.65598, -0.143002, -0.249001 ) ]
-}
-tracks/39/type = "value"
-tracks/39/path = NodePath("hand2/fingers/finger4/MeshInstance2:translation")
-tracks/39/interp = 1
-tracks/39/loop_wrap = true
-tracks/39/imported = false
-tracks/39/enabled = true
-tracks/39/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.136754, 1.17039, 0.101407 ) ]
-}
-tracks/40/type = "value"
-tracks/40/path = NodePath("hand2/fingers/finger4/MeshInstance2:rotation_degrees")
-tracks/40/interp = 1
-tracks/40/loop_wrap = true
-tracks/40/imported = false
-tracks/40/enabled = true
-tracks/40/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 11.544, -0.385999, -0.582 ) ]
-}
-tracks/41/type = "value"
-tracks/41/path = NodePath("hand2/fingers/finger5/MeshInstance:translation")
-tracks/41/interp = 1
-tracks/41/loop_wrap = true
-tracks/41/imported = false
-tracks/41/enabled = true
-tracks/41/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.392721, 0.631417, 0.0185436 ) ]
-}
-tracks/42/type = "value"
-tracks/42/path = NodePath("hand2/fingers/finger5/MeshInstance:rotation_degrees")
-tracks/42/interp = 1
-tracks/42/loop_wrap = true
-tracks/42/imported = false
-tracks/42/enabled = true
-tracks/42/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, 0.0160004, -1.135 ) ]
-}
-tracks/43/type = "value"
-tracks/43/path = NodePath("hand2/fingers/finger5/MeshInstance2:translation")
-tracks/43/interp = 1
-tracks/43/loop_wrap = true
-tracks/43/imported = false
-tracks/43/enabled = true
-tracks/43/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.395325, 1.0663, 0.0856898 ) ]
-}
-tracks/44/type = "value"
-tracks/44/path = NodePath("hand2/fingers/finger5/MeshInstance2:rotation_degrees")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, -0.267999, -3.122 ) ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -610,7 +90,7 @@ tracks/1/keys = {
 "values": [ Vector3( -13, 80, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:translation")
+tracks/2/path = NodePath("head:translation")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -619,11 +99,11 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ) ]
+"values": [ Vector3( 0, 0.487619, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("hand1:rotation_degrees")
-tracks/3/interp = 2
+tracks/3/path = NodePath("hand2:scale")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -631,11 +111,11 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 13, 100, 180 ) ]
+"values": [ Vector3( -1, -1, -1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("hand2/fingers/finger2/MeshInstance:translation")
-tracks/4/interp = 2
+tracks/4/path = NodePath("hand1:translation")
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -643,11 +123,11 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -0.386679, 0.723332, 0.0739243 ) ]
+"values": [ Vector3( -1.6, -0.9, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("hand2/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/5/interp = 2
+tracks/5/path = NodePath("hand1:rotation_degrees")
+tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
@@ -655,11 +135,11 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 16.6551, -0.27182, 0.673153 ) ]
+"values": [ Vector3( 13, 100, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("hand2/fingers/finger2/MeshInstance2:translation")
-tracks/6/interp = 2
+tracks/6/path = NodePath("hand1:scale")
+tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
@@ -667,11 +147,11 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -0.387623, 1.19967, 0.201366 ) ]
+"values": [ Vector3( -1, -1, -1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("head:translation")
-tracks/7/interp = 2
+tracks/7/path = NodePath("AnimationPlayer:physics_interpolation_mode")
+tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
@@ -679,10 +159,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.487619, 0 ) ]
+"values": [ 1 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("hand1/fingers/finger1/MeshInstance:translation")
+tracks/8/path = NodePath("hand2/hitbox:is_active")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -691,10 +171,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -0.60447, -0.190778, 0.0261766 ) ]
+"values": [ true ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("hand1/fingers/finger1/MeshInstance:rotation_degrees")
+tracks/9/path = NodePath("head:rotation_degrees")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -703,10 +183,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -10.73, 90, -4.74584e-07 ) ]
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("hand1/fingers/finger1/MeshInstance2:translation")
+tracks/10/path = NodePath("head:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -715,435 +195,115 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -0.656981, 0.228754, 0.0245145 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
-tracks/11/type = "value"
-tracks/11/path = NodePath("hand1/fingers/finger1/MeshInstance2:rotation_degrees")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
+
+[sub_resource type="Animation" id=25]
+resource_name = "hurt"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("hand2:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.6, -1.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("hand2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -13, 80, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hand2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("hand1:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -1.6, -1.5, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("hand1:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 13, 100, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("hand1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("head:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.487619, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("head:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ) ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("hand1/fingers/finger2/MeshInstance:translation")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.392817, 0.66979, 0.0258397 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("hand1/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 10.5156, -0.253605, 1.78759 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("hand1/fingers/finger2/MeshInstance2:translation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.413959, 1.19743, 0.138076 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("hand1/fingers/finger2/MeshInstance2:rotation_degrees")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.5502, -0.156233, 1.8079 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("hand1/fingers/finger3/MeshInstance:translation")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.130176, 0.753027, 0.0406142 ) ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("hand1/fingers/finger3/MeshInstance:rotation_degrees")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.40569, -0.228851, 1.42937 ) ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("hand1/fingers/finger3/MeshInstance2:translation")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.146732, 1.27846, 0.137648 ) ]
-}
-tracks/19/type = "value"
-tracks/19/path = NodePath("hand1/fingers/finger3/MeshInstance2:rotation_degrees")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.0979, -0.193242, 1.9141 ) ]
-}
-tracks/20/type = "value"
-tracks/20/path = NodePath("hand1/fingers/finger4/MeshInstance:translation")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.132308, 0.656493, 0.00880003 ) ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("hand1/fingers/finger4/MeshInstance:rotation_degrees")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.65602, -0.199, 1.135 ) ]
-}
-tracks/22/type = "value"
-tracks/22/path = NodePath("hand1/fingers/finger4/MeshInstance2:translation")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.118302, 1.18572, 0.0918658 ) ]
-}
-tracks/23/type = "value"
-tracks/23/path = NodePath("hand1/fingers/finger4/MeshInstance2:rotation_degrees")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 11.544, -0.188795, 1.64629 ) ]
-}
-tracks/24/type = "value"
-tracks/24/path = NodePath("hand1/fingers/finger5/MeshInstance:translation")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.392965, 0.631106, 0.0198873 ) ]
-}
-tracks/25/type = "value"
-tracks/25/path = NodePath("hand1/fingers/finger5/MeshInstance:rotation_degrees")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99597, 6.17242e-07, -1.51271e-06 ) ]
-}
-tracks/26/type = "value"
-tracks/26/path = NodePath("hand1/fingers/finger5/MeshInstance2:translation")
-tracks/26/interp = 1
-tracks/26/loop_wrap = true
-tracks/26/imported = false
-tracks/26/enabled = true
-tracks/26/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.394424, 1.06745, 0.0807105 ) ]
-}
-tracks/27/type = "value"
-tracks/27/path = NodePath("hand1/fingers/finger5/MeshInstance2:rotation_degrees")
-tracks/27/interp = 1
-tracks/27/loop_wrap = true
-tracks/27/imported = false
-tracks/27/enabled = true
-tracks/27/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, -1.32685e-06, -3.02543e-06 ) ]
-}
-tracks/28/type = "value"
-tracks/28/path = NodePath("hand2/fingers/finger1/MeshInstance:translation")
-tracks/28/interp = 1
-tracks/28/loop_wrap = true
-tracks/28/imported = false
-tracks/28/enabled = true
-tracks/28/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.60447, -0.190778, 0.0261766 ) ]
-}
-tracks/29/type = "value"
-tracks/29/path = NodePath("hand2/fingers/finger1/MeshInstance:rotation_degrees")
-tracks/29/interp = 1
-tracks/29/loop_wrap = true
-tracks/29/imported = false
-tracks/29/enabled = true
-tracks/29/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -10.73, 90, -4.74584e-07 ) ]
-}
-tracks/30/type = "value"
-tracks/30/path = NodePath("hand2/fingers/finger1/MeshInstance2:translation")
-tracks/30/interp = 1
-tracks/30/loop_wrap = true
-tracks/30/imported = false
-tracks/30/enabled = true
-tracks/30/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.656981, 0.228754, 0.0245145 ) ]
-}
-tracks/31/type = "value"
-tracks/31/path = NodePath("hand2/fingers/finger1/MeshInstance2:rotation_degrees")
-tracks/31/interp = 1
-tracks/31/loop_wrap = true
-tracks/31/imported = false
-tracks/31/enabled = true
-tracks/31/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
-}
-tracks/32/type = "value"
-tracks/32/path = NodePath("hand2/fingers/finger2/MeshInstance2:rotation_degrees")
-tracks/32/interp = 1
-tracks/32/loop_wrap = true
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.55, -0.806978, -1.72902 ) ]
-}
-tracks/33/type = "value"
-tracks/33/path = NodePath("hand2/fingers/finger3/MeshInstance:translation")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.130079, 0.73168, 0.0362476 ) ]
-}
-tracks/34/type = "value"
-tracks/34/path = NodePath("hand2/fingers/finger3/MeshInstance:rotation_degrees")
-tracks/34/interp = 1
-tracks/34/loop_wrap = true
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.40598, -0.27, 0.694998 ) ]
-}
-tracks/35/type = "value"
-tracks/35/path = NodePath("hand2/fingers/finger3/MeshInstance2:translation")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.132937, 1.25463, 0.133801 ) ]
-}
-tracks/36/type = "value"
-tracks/36/path = NodePath("hand2/fingers/finger3/MeshInstance2:rotation_degrees")
-tracks/36/interp = 1
-tracks/36/loop_wrap = true
-tracks/36/imported = false
-tracks/36/enabled = true
-tracks/36/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 13.098, -0.465, -0.376 ) ]
-}
-tracks/37/type = "value"
-tracks/37/path = NodePath("hand2/fingers/finger4/MeshInstance:translation")
-tracks/37/interp = 1
-tracks/37/loop_wrap = true
-tracks/37/imported = false
-tracks/37/enabled = true
-tracks/37/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.134071, 0.654245, 0.0185407 ) ]
-}
-tracks/38/type = "value"
-tracks/38/path = NodePath("hand2/fingers/finger4/MeshInstance:rotation_degrees")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 6.65598, -0.143002, -0.249001 ) ]
-}
-tracks/39/type = "value"
-tracks/39/path = NodePath("hand2/fingers/finger4/MeshInstance2:translation")
-tracks/39/interp = 1
-tracks/39/loop_wrap = true
-tracks/39/imported = false
-tracks/39/enabled = true
-tracks/39/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.136754, 1.17039, 0.101407 ) ]
-}
-tracks/40/type = "value"
-tracks/40/path = NodePath("hand2/fingers/finger4/MeshInstance2:rotation_degrees")
-tracks/40/interp = 1
-tracks/40/loop_wrap = true
-tracks/40/imported = false
-tracks/40/enabled = true
-tracks/40/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 11.544, -0.385999, -0.582 ) ]
-}
-tracks/41/type = "value"
-tracks/41/path = NodePath("hand2/fingers/finger5/MeshInstance:translation")
-tracks/41/interp = 1
-tracks/41/loop_wrap = true
-tracks/41/imported = false
-tracks/41/enabled = true
-tracks/41/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.392721, 0.631417, 0.0185436 ) ]
-}
-tracks/42/type = "value"
-tracks/42/path = NodePath("hand2/fingers/finger5/MeshInstance:rotation_degrees")
-tracks/42/interp = 1
-tracks/42/loop_wrap = true
-tracks/42/imported = false
-tracks/42/enabled = true
-tracks/42/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, 0.0160004, -1.135 ) ]
-}
-tracks/43/type = "value"
-tracks/43/path = NodePath("hand2/fingers/finger5/MeshInstance2:translation")
-tracks/43/interp = 1
-tracks/43/loop_wrap = true
-tracks/43/imported = false
-tracks/43/enabled = true
-tracks/43/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.395325, 1.0663, 0.0856898 ) ]
-}
-tracks/44/type = "value"
-tracks/44/path = NodePath("hand2/fingers/finger5/MeshInstance2:rotation_degrees")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 8.99598, -0.267999, -3.122 ) ]
-}
-tracks/45/type = "value"
-tracks/45/path = NodePath("hand2:scale")
-tracks/45/interp = 1
-tracks/45/loop_wrap = true
-tracks/45/imported = false
-tracks/45/enabled = true
-tracks/45/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1, -1, -1 ) ]
-}
-tracks/46/type = "value"
-tracks/46/path = NodePath("hand1:scale")
-tracks/46/interp = 1
-tracks/46/loop_wrap = true
-tracks/46/imported = false
-tracks/46/enabled = true
-tracks/46/keys = {
+tracks/8/type = "value"
+tracks/8/path = NodePath("head:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1167,7 +327,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0.487619, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, 0.487619, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("hand1:translation")
+tracks/1/path = NodePath("hand2:translation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1176,10 +336,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.7, 1.4 ),
 "transitions": PoolRealArray( 0.4, 2, 0.25 ),
 "update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ), Vector3( -1.75, -0.5, 0 ), Vector3( -1.6, -0.9, -0.000195554 ) ]
+"values": [ Vector3( 1.6, -1.5, 0 ), Vector3( 1.75, -1.1, 0 ), Vector3( 1.6, -1.5, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:rotation_degrees")
+tracks/2/path = NodePath("hand2:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1188,22 +348,22 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.7, 1.4 ),
 "transitions": PoolRealArray( 0.4, 2, 0.25 ),
 "update": 0,
-"values": [ Vector3( 13, 100, 180 ), Vector3( 20, 100, 180 ), Vector3( 13, 100, 180 ) ]
+"values": [ Vector3( -13, 80, 0 ), Vector3( -20, 80, 0 ), Vector3( -13, 80, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("hand2:translation")
+tracks/3/path = NodePath("hand2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1.4 ),
-"transitions": PoolRealArray( 0.4, 2, 0.25 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 1.6, -0.9, 0.000195554 ), Vector3( 1.75, -0.5, 0 ), Vector3( 1.6, -0.9, 0.000195554 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("hand2:rotation_degrees")
+tracks/4/path = NodePath("hand1:translation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1212,22 +372,22 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.7, 1.4 ),
 "transitions": PoolRealArray( 0.4, 2, 0.25 ),
 "update": 0,
-"values": [ Vector3( -13, 80, 0 ), Vector3( -20, 80, 0 ), Vector3( -13, 80, 0 ) ]
+"values": [ Vector3( -1.6, -1.5, 0 ), Vector3( -1.75, -1.1, 0 ), Vector3( -1.6, -1.5, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("hand1:scale")
+tracks/5/path = NodePath("hand1:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.7, 1.4 ),
+"transitions": PoolRealArray( 0.4, 2, 0.25 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
+"values": [ Vector3( 13, 100, 0 ), Vector3( 20, 100, 0 ), Vector3( 13, 100, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("hand2:scale")
+tracks/6/path = NodePath("hand1:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1236,11 +396,12 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1, -1, -1 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=19]
-resource_name = "slap"
+resource_name = "punch"
+length = 1.35
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:translation")
@@ -1255,64 +416,88 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0.487619, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("hand1:translation")
+tracks/1/path = NodePath("hand2:translation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 0.75 ),
-"transitions": PoolRealArray( 0.1, 7.5, 3.24901 ),
+"times": PoolRealArray( 0, 0.25, 0.45, 0.6, 1, 1.2 ),
+"transitions": PoolRealArray( 2, 1, 0.25, 1, 3, 0.25 ),
 "update": 0,
-"values": [ Vector3( -1.6, -0.9, -0.000195554 ), Vector3( -1.6, -0.9, -1.52741 ), Vector3( -2.26006, -0.9, 1.68398 ) ]
+"values": [ Vector3( 1.6, -1, 0 ), Vector3( 1.6, 0, 1.25 ), Vector3( 1.6, 0, 1.25 ), Vector3( 1.6, 0, -6 ), Vector3( 1.6, 0, -6 ), Vector3( 1.6, 0, 1.25 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:rotation_degrees")
+tracks/2/path = NodePath("hand2:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.7, 0.75 ),
-"transitions": PoolRealArray( 0.1, 7.5, 3.24901 ),
+"times": PoolRealArray( 0, 0.25, 0.45, 0.6, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 0.5, 1, 3, 0.5 ),
 "update": 0,
-"values": [ Vector3( 13, 100, -180 ), Vector3( -6.8761, 107.939, -103.817 ), Vector3( 43.1062, 132.987, 167.294 ) ]
+"values": [ Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("hand2:translation")
+tracks/3/path = NodePath("hand2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 0.75 ),
-"transitions": PoolRealArray( 0.1, 7.5, 1 ),
+"times": PoolRealArray( 0, 0.25, 0.45, 0.5, 0.55, 1.1, 1.15, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 0.5, 1, 1, 1, 1, 0.5 ),
 "update": 0,
-"values": [ Vector3( 1.6, -0.9, 0.000195554 ), Vector3( 1.86442, -0.453504, 2.35727 ), Vector3( 1.86442, -0.453504, -4.29289 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 2 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 2 ), Vector3( 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("hand2:rotation_degrees")
+tracks/4/path = NodePath("hand1:translation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.7, 0.75 ),
-"transitions": PoolRealArray( 0.1, 7.5, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.45, 0.5, 1.15, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 0.25, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -13, 80, 0 ), Vector3( 9.65065, -16.8874, 92.6437 ), Vector3( 9.65065, 97.7476, 92.6437 ) ]
+"values": [ Vector3( -1.6, -1, 0 ), Vector3( -1.6, -0.938, -0.5 ), Vector3( -1.6, -0.75, -1 ), Vector3( -1.6, -0.438, -1.5 ), Vector3( -1.6, 0, -2 ), Vector3( -1.6, -0.5, 2 ), Vector3( -1.6, -0.5, 2 ), Vector3( -1.6, 0, -2 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("hand2:scale")
+tracks/5/path = NodePath("hand1:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.7, 0.75 ),
-"transitions": PoolRealArray( 1, 7.5, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.45, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -1, -1, -1 ), Vector3( -1, -1, -1 ), Vector3( -1.5, -1.5, -1.5 ) ]
+"values": [ Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("hand1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.45, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("hand2/hitbox:is_active")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.45, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -1344,104 +529,65 @@ tracks/1/keys = {
 "values": [ Vector3( -19.8154, 119.874, 39.6274 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("hand1:translation")
+tracks/2/path = NodePath("head:translation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.9, 1.8 ),
-"transitions": PoolRealArray( 2.5, 0.5, 1.5 ),
+"transitions": PoolRealArray( 2.5, 0.5, 1 ),
 "update": 0,
-"values": [ Vector3( -0.961, -0.6, 1.761 ), Vector3( -0.961, -0.8, 1.761 ), Vector3( -0.961, -0.6, 1.761 ) ]
+"values": [ Vector3( 0, 0.3, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0.3, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("hand1:rotation_degrees")
+tracks/3/path = NodePath("hand2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 0.5 ),
-"update": 0,
-"values": [ Vector3( 43.4236, 134.924, 163.492 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("hand2/fingers/finger2/MeshInstance:translation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 0.5 ),
-"update": 0,
-"values": [ Vector3( -0.386679, 0.723332, 0.0739243 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("hand2/fingers/finger2/MeshInstance:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 0.5 ),
-"update": 0,
-"values": [ Vector3( 16.6551, -0.27182, 0.673153 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("hand2/fingers/finger2/MeshInstance2:translation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 0.5 ),
-"update": 0,
-"values": [ Vector3( -0.387623, 1.19967, 0.201366 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("head:translation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.9, 1.8 ),
-"transitions": PoolRealArray( 2.5, 0.5, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.3, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0.3, 0 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("hand2:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1, -1, -1 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("hand1:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1, 1 ) ]
 }
-
-[sub_resource type="BitmapFont" id=20]
-resource_name = "HomeVideo-BLG6G.ttf"
+tracks/4/type = "value"
+tracks/4/path = NodePath("hand1:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9, 1.8 ),
+"transitions": PoolRealArray( 2.5, 0.5, 1.5 ),
+"update": 0,
+"values": [ Vector3( -1.6, -1.5, 2 ), Vector3( -1.6, -1.7, 2 ), Vector3( -1.6, -1.5, 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("hand1:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 13, 100, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("hand1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
 
 [node name="Player" type="Spatial"]
 
@@ -1454,165 +600,63 @@ shape = SubResource( 13 )
 
 [node name="head" type="MeshInstance" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487619, 0 )
-generate_lightmap = false
 mesh = SubResource( 2 )
 
 [node name="hand1" type="Spatial" parent="KinematicBody"]
-transform = Transform( 0.173648, -0.221534, 0.959567, -8.51821e-08, -0.97437, -0.224951, 0.984808, 0.0390623, -0.169198, -1.6, -0.9, -0.000195554 )
+transform = Transform( 0.173648, -0.221534, -0.959567, 0, -0.97437, 0.224951, 0.984808, 0.0390623, 0.169198, -1.6, -0.9, 0 )
 
 [node name="hitbox" type="Area" parent="KinematicBody/hand1"]
-transform = Transform( 1, 0, 0, 0, 1, 1.30385e-08, 0, -1.30385e-08, 1, 0, 0, 0 )
+transform = Transform( 0.99638, -0.0849995, 0, 0.0849995, 0.996381, 0, 0, 0, -0.999999, 0.0419094, -0.0534662, 0.231587 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody/hand1/hitbox"]
-transform = Transform( 0.999999, -2.23517e-08, -1.78814e-07, 2.23517e-08, 1, 5.68106e-08, 1.78814e-07, -5.68107e-08, 0.999999, -0.0908298, 0.508556, 0.00860214 )
-shape = SubResource( 12 )
+transform = Transform( 1, 7.45058e-08, -2.98023e-08, 7.45058e-08, 1, -5.72763e-08, 1.78814e-07, -5.21541e-08, 1, -0.0189608, 0.0410796, 0.250934 )
+shape = SubResource( 23 )
 
-[node name="palm" type="MeshInstance" parent="KinematicBody/hand1"]
-mesh = SubResource( 3 )
-
-[node name="fingers" type="Spatial" parent="KinematicBody/hand1"]
-
-[node name="finger1" type="Spatial" parent="KinematicBody/hand1/fingers"]
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger1"]
-transform = Transform( -4.21692e-08, -0.186181, 0.982515, -8.13823e-09, 0.982515, 0.186181, -1, -1.4482e-10, -4.29471e-08, -0.60447, -0.190778, 0.0261766 )
-mesh = SubResource( 4 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656981, 0.228754, 0.0245145 )
-mesh = SubResource( 5 )
-
-[node name="finger2" type="Spatial" parent="KinematicBody/hand1/fingers"]
-transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger2"]
-transform = Transform( 0.999477, -0.0320013, -0.00435189, 0.0306703, 0.982726, -0.182503, 0.0101171, 0.182274, 0.983195, -0.392817, 0.66979, 0.0258397 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger2"]
-transform = Transform( 0.999478, -0.032187, -0.00265088, 0.0306704, 0.971681, -0.234297, 0.0101171, 0.234094, 0.972161, -0.413959, 1.19743, 0.138076 )
-mesh = SubResource( 7 )
-
-[node name="finger3" type="Spatial" parent="KinematicBody/hand1/fingers"]
-transform = Transform( 1, -3.72529e-09, 1.49012e-08, -3.72529e-09, 1, 7.45058e-09, 1.49012e-08, -2.468e-08, 1, 0, 0, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger3"]
-transform = Transform( 0.999666, -0.0255281, -0.00395129, 0.0246767, 0.98895, -0.146181, 0.00763936, 0.146035, 0.98925, -0.130176, 0.753027, 0.0406142 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger3"]
-transform = Transform( 0.99941, -0.0341648, -0.00328496, 0.0325322, 0.97344, -0.226616, 0.01094, 0.226375, 0.973979, -0.146732, 1.27846, 0.137648 )
-mesh = SubResource( 8 )
-
-[node name="finger4" type="Spatial" parent="KinematicBody/hand1/fingers"]
-transform = Transform( 1, 0, 0, -3.72529e-09, 1, 6.98492e-09, 1.49012e-08, -1.02445e-08, 1, 0, 0, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger4"]
-transform = Transform( 0.999789, -0.0202105, -0.00344979, 0.0196747, 0.993064, -0.115908, 0.00576843, 0.115816, 0.993254, 0.132308, 0.656493, 0.00880003 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger4"]
-transform = Transform( 0.999562, -0.0293882, -0.00322843, 0.028148, 0.979366, -0.20012, 0.00904299, 0.199942, 0.979766, 0.118302, 1.18572, 0.0918658 )
-mesh = SubResource( 9 )
-
-[node name="finger5" type="Spatial" parent="KinematicBody/hand1/fingers"]
-transform = Transform( 1, 0, 0, -3.72529e-09, 1, 6.98492e-09, 1.49012e-08, -1.02445e-08, 1, 0, 0, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger5"]
-transform = Transform( 0.999999, 2.80863e-08, 1.06404e-08, -2.6077e-08, 0.987699, -0.156365, -1.49012e-08, 0.156365, 0.987699, 0.392965, 0.631106, 0.0198873 )
-mesh = SubResource( 11 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand1/fingers/finger5"]
-transform = Transform( 0.999998, 4.91826e-08, -2.2873e-08, -5.21541e-08, 0.987698, -0.156365, 1.49012e-08, 0.156365, 0.987699, 0.394424, 1.06745, 0.0807105 )
-mesh = SubResource( 10 )
+[node name="hand" type="MeshInstance" parent="KinematicBody/hand1"]
+transform = Transform( 1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0 )
+mesh = SubResource( 22 )
 
 [node name="hand2" type="Spatial" parent="KinematicBody"]
 transform = Transform( -0.173648, 0.221534, -0.959567, 0, -0.97437, -0.224951, 0.984808, 0.0390623, -0.169198, 1.6, -0.9, 0.000195554 )
 
 [node name="hitbox" type="Area" parent="KinematicBody/hand2"]
 transform = Transform( 0.99638, -0.0849995, 0, 0.0849995, 0.996381, 0, 0, 0, -0.999999, 0.0419094, -0.0534662, 0.231587 )
+script = ExtResource( 3 )
+is_active = true
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody/hand2/hitbox"]
-transform = Transform( 1, 4.09782e-08, -1.49012e-08, 2.6077e-08, 1, 1.90921e-08, 1.3411e-07, 1.58325e-08, 1, -0.131991, 0.509901, 0.172039 )
-shape = SubResource( 12 )
+transform = Transform( 1, 7.45058e-08, -2.98023e-08, 7.45058e-08, 1, -5.72763e-08, 1.78814e-07, -5.21541e-08, 1, -0.0189608, 0.0410796, 0.250934 )
+shape = SubResource( 24 )
 
-[node name="palm" type="MeshInstance" parent="KinematicBody/hand2"]
+[node name="hand" type="MeshInstance" parent="KinematicBody/hand2"]
 transform = Transform( 1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0 )
-mesh = SubResource( 3 )
-
-[node name="fingers" type="Spatial" parent="KinematicBody/hand2"]
-transform = Transform( 1, -5.96046e-08, 2.98023e-08, -2.98023e-08, 1, -5.96046e-08, -5.96046e-08, 0, 1, 0, 0, 0 )
-
-[node name="finger1" type="Spatial" parent="KinematicBody/hand2/fingers"]
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger1"]
-transform = Transform( -4.21692e-08, -0.186181, 0.982515, -8.13823e-09, 0.982515, 0.186181, -1, -1.4482e-10, -4.29471e-08, -0.60447, -0.190778, 0.0261766 )
-mesh = SubResource( 4 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.656981, 0.228754, 0.0245145 )
-mesh = SubResource( 5 )
-
-[node name="finger2" type="Spatial" parent="KinematicBody/hand2/fingers"]
-transform = Transform( 1, 2.98023e-08, 0, 0, 1, 1.49012e-08, 1.49012e-08, -1.49012e-08, 1, 0, 0, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
-transform = Transform( 0.999901, -0.0131079, -0.00454511, 0.0112556, 0.95798, -0.28661, 0.00811097, 0.286531, 0.958036, -0.386679, 0.723332, 0.0739243 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger2"]
-transform = Transform( 0.99954, 0.0268712, -0.0136919, -0.0293325, 0.971722, -0.234293, 0.00700898, 0.234589, 0.972067, -0.387623, 1.19967, 0.201366 )
-mesh = SubResource( 7 )
-
-[node name="finger3" type="Spatial" parent="KinematicBody/hand2/fingers"]
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
-transform = Transform( 0.999907, -0.0128184, -0.00466175, 0.0119994, 0.989186, -0.146186, 0.0064852, 0.146117, 0.989247, -0.130079, 0.73168, 0.0362476 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger3"]
-transform = Transform( 0.999956, 0.00472307, -0.00790455, -0.00639165, 0.973965, -0.226617, 0.0066284, 0.226659, 0.973952, -0.132937, 1.25463, 0.133801 )
-mesh = SubResource( 8 )
-
-[node name="finger4" type="Spatial" parent="KinematicBody/hand2/fingers"]
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
-transform = Transform( 0.999987, 0.00405657, -0.00247903, -0.00431658, 0.99325, -0.115908, 0.00199211, 0.115917, 0.993257, 0.134071, 0.654245, 0.0185407 )
-mesh = SubResource( 6 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger4"]
-transform = Transform( 0.999938, 0.00880929, -0.00660063, -0.00995215, 0.979721, -0.200121, 0.00470384, 0.200174, 0.97975, 0.136754, 1.17039, 0.101407 )
-mesh = SubResource( 9 )
-
-[node name="finger5" type="Spatial" parent="KinematicBody/hand2/fingers"]
-
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
-transform = Transform( 0.999802, 0.0198519, 0.000275825, -0.0195645, 0.987506, -0.156365, -0.00337651, 0.156329, 0.987699, 0.392721, 0.631417, 0.0185436 )
-mesh = SubResource( 11 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="KinematicBody/hand2/fingers/finger5"]
-transform = Transform( 0.998543, 0.0537313, -0.00461991, -0.0537922, 0.986233, -0.156365, -0.00384539, 0.156386, 0.987689, 0.395325, 1.0663, 0.0856898 )
-mesh = SubResource( 10 )
+mesh = SubResource( 22 )
 
 [node name="Camera" type="Camera" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.5, 7.5 )
 current = true
 
+[node name="health_monitor" type="Label3D" parent="KinematicBody/Camera"]
+transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 3.62279, -6.586 )
+pixel_size = 0.05
+billboard = 1
+shaded = true
+text = "Max Health : 150"
+font = ExtResource( 4 )
+script = ExtResource( 2 )
+
 [node name="Timer" type="Timer" parent="KinematicBody"]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody"]
+physics_interpolation_mode = 1
 autoplay = "idle"
 "anims/Default Animation Template" = SubResource( 17 )
 anims/RESET = SubResource( 14 )
+anims/hurt = SubResource( 25 )
 anims/idle = SubResource( 18 )
-anims/slap = SubResource( 19 )
+anims/punch = SubResource( 19 )
 anims/walk = SubResource( 16 )
-blend_times = [ "Default Animation Template", "idle", 0.2, "Default Animation Template", "walk", 0.2, "slap", "idle", 0.1, "slap", "slap", 0.1, "slap", "walk", 0.1, "walk", "Default Animation Template", 0.3, "walk", "RESET", 0.3, "walk", "idle", 0.1, "walk", "walk", 0.1 ]
+blend_times = [ "Default Animation Template", "idle", 0.2, "Default Animation Template", "walk", 0.2, "punch", "idle", 0.1, "punch", "punch", 0.2, "punch", "walk", 0.1, "walk", "Default Animation Template", 0.3, "walk", "RESET", 0.3, "walk", "idle", 0.1, "walk", "walk", 0.1 ]
 
-[node name="Label3D" type="Label3D" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-pixel_size = 0.05
-billboard = 1
-font = SubResource( 20 )
-script = ExtResource( 2 )
+[connection signal="body_entered" from="KinematicBody/hand2/hitbox" to="KinematicBody" method="_on_hitbox_2_body_entered"]

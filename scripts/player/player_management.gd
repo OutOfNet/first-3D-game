@@ -4,6 +4,7 @@ const GRAVITY = 150
 const MAX_HEALTH = 150
 const CAMERA_NEUTRAL_ROTATION = -0.35
 const INT_MAX = 2147483647
+const INVINCIBILITY_TIME = 2.0
 
 export var speed = 15.0
 
@@ -12,14 +13,39 @@ var velocity = Vector3.ZERO
 var health = MAX_HEALTH
 var is_rotating = false
 var is_attacking = false
+var is_invincible = false
 var camera
-var cooldowns_left = {
-	"attack_1": 2.0,
+
+var attack_damage = {
+	"attack_1": 20.0,
+	"attack_2": 1.0,
+	"attack_3": 1.0,
+	"attack_4": 1.0
+}
+var attacks_active = {
+	"attack_1": false,
+	"attack_2": false,
+	"attack_3": false,
+	"attack_4": false
+}
+var attack_durations = {
+	"attack_1": 1.35,
+	"attack_2": 1.0,
+	"attack_3": 1.0,
+	"attack_4": 1.0
+}
+var default_cooldowns = {
+	"attack_1": 1.0,
 	"attack_2": 4.0,
 	"attack_3": 6.0,
 	"attack_4": 10.0
 }
-
+var cooldowns_left = {
+	"attack_1": 1.0,
+	"attack_2": 4.0,
+	"attack_3": 6.0,
+	"attack_4": 10.0
+}
 var attack_cooldowns = {
 	"attack_1": false,
 	"attack_2": false,
@@ -33,7 +59,6 @@ var camera_angles = [0, 0.785398, 1.570796, 2.356194, 3.141592, -3.141593, -2.35
 
 func _ready():
 	camera = get_node("Camera")
-
 
 func find_closest(value, array) -> float:
 	
@@ -50,6 +75,40 @@ func find_closest(value, array) -> float:
 			
 	return best_match
 
+func take_damage(amount, source):
+	if is_invincible == true:
+		pass
+	elif amount >= health && source == "internal":
+		health = 0
+		is_invincible = true
+		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
+		is_invincible = false
+	elif amount >= health && source == "external":
+		health = 0
+		is_invincible = true
+		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
+		is_invincible = false
+	elif amount < health && source == "internal":
+		health -= amount
+	else:
+		health -= amount
+
+func heal(amount):
+	if health + amount < MAX_HEALTH:
+		health += amount
+	else:
+		health = MAX_HEALTH
+
+func deal_damage(amount, target):
+	if target.has_method("take_damage") == true:
+		if target == self:
+			pass
+		else:
+			if "is_invincible" in target && target.is_invincible == true:
+				pass
+			else:
+				heal(amount * .6)
+			target.take_damage(amount)
 
 func rotate_camera(rotate_direction):
 	if rotate_direction == "left" && is_rotating == false:
@@ -116,6 +175,8 @@ func _input(_event):
 	elif Input.is_action_just_pressed("camera_up"):
 		if is_rotating == false:
 			is_rotating = true
+			if camera.rotation.x != CAMERA_NEUTRAL_ROTATION:
+				camera.rotation.x = CAMERA_NEUTRAL_ROTATION
 			yield(get_tree().create_timer(0.02), "timeout")
 			target_rotation.y = camera.rotation.x + 0.5
 			# Smoothly rotates the camera upwards.
@@ -126,6 +187,8 @@ func _input(_event):
 	elif Input.is_action_just_pressed("camera_down"):
 		if is_rotating == false:
 			is_rotating = true
+			if camera.rotation.x != CAMERA_NEUTRAL_ROTATION:
+				camera.rotation.x = CAMERA_NEUTRAL_ROTATION
 			yield(get_tree().create_timer(0.02), "timeout")
 			target_rotation.y = camera.rotation.x - 0.5
 			# Smoothly rotates the camera downwards.
@@ -145,13 +208,25 @@ func _input(_event):
 	
 	if Input.is_action_just_pressed("attack_1") && is_attacking == false && attack_cooldowns.attack_1 == false:
 		is_attacking = true
-		get_node("AnimationPlayer").play("slap")
+		attacks_active.attack_1 = true
+		take_damage(attack_damage.attack_1 / 2, "internal")
+		get_node("AnimationPlayer").play("punch")
 		attack_cooldowns.attack_1 = true
-		yield(get_tree().create_timer(1), "timeout")
+		yield(get_tree().create_timer(attack_durations.attack_1), "timeout")
 		is_attacking = false
-		for _i in range(0, 20):
+		for _i in range(0, default_cooldowns.attack_1 * 10):
+			cooldowns_left.attack_1 -= 0.1
 			yield(get_tree().create_timer(0.1), "timeout")
 			print("Attack 1 cooldown : ", cooldowns_left.attack_1)
-			cooldowns_left.attack_1 -= 0.1
-		cooldowns_left.attack_1 = 2
+		cooldowns_left.attack_1 = default_cooldowns.attack_1
 		attack_cooldowns.attack_1 = false
+
+
+func _on_hitbox_2_body_entered(body):
+	if get_node("hand2/hitbox").is_hitbox_active() == true && "health" in body && "is_invincible" in body && body.has_method("take_damage") == true:
+		if attacks_active.attack_1 == true:
+			if body.is_invincible == true:
+				pass
+			else:
+				deal_damage(attack_damage.attack_1, body)
+				print(body.health)
