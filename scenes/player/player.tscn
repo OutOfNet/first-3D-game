@@ -1,21 +1,51 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/player/player_management.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player/health_monitor.gd" type="Script" id=2]
-[ext_resource path="res://scripts/player/hitboxes/hitbox_2.gd" type="Script" id=3]
+[ext_resource path="res://scripts/player/hitboxes/punch_hitbox.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/HomeVideo.tres" type="DynamicFont" id=4]
 
 [sub_resource type="CapsuleShape" id=13]
 height = 2.40983
 
+[sub_resource type="SpatialMaterial" id=26]
+metallic = 1.0
+roughness = 0.0
+
 [sub_resource type="SphereMesh" id=2]
+material = SubResource( 26 )
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=31]
+material = SubResource( 30 )
+flip_faces = true
 radial_segments = 16
 rings = 8
 
 [sub_resource type="BoxShape" id=23]
 extents = Vector3( 0.75, 0.75, 0.75 )
 
+[sub_resource type="SpatialMaterial" id=27]
+metallic = 1.0
+roughness = 0.0
+
 [sub_resource type="SphereMesh" id=22]
+material = SubResource( 27 )
+radius = 0.75
+height = 1.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SpatialMaterial" id=32]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=33]
+material = SubResource( 32 )
+flip_faces = true
 radius = 0.75
 height = 1.5
 radial_segments = 8
@@ -23,6 +53,28 @@ rings = 4
 
 [sub_resource type="BoxShape" id=24]
 extents = Vector3( 0.75, 0.75, 0.75 )
+
+[sub_resource type="SpatialMaterial" id=28]
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id=29]
+material = SubResource( 28 )
+radius = 0.75
+height = 1.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SpatialMaterial" id=34]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=35]
+material = SubResource( 34 )
+flip_faces = true
+radius = 0.75
+height = 1.5
+radial_segments = 8
+rings = 4
 
 [sub_resource type="Animation" id=17]
 resource_name = "Default Animation Template"
@@ -197,9 +249,58 @@ tracks/10/keys = {
 "update": 0,
 "values": [ Vector3( 1, 1, 1 ) ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("hand1/hitbox:is_active")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("hand1/hand:mesh:material:albedo_color")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("head:mesh:material:albedo_color")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("hand2/hand:mesh:material:albedo_color")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "hurt"
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("hand2:translation")
@@ -208,10 +309,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1.6, -1.5, 0 ) ]
+"values": [ Vector3( 1.6, -1.5, 0 ), Vector3( 1.6, -1.5, 0 ), Vector3( 1.6, -1.5, -2 ), Vector3( 1.6, -1.5, -2 ), Vector3( 1.6, -1.5, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("hand2:rotation_degrees")
@@ -220,10 +321,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( -13, 80, 0 ) ]
+"values": [ Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("hand2:scale")
@@ -232,10 +333,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("hand1:translation")
@@ -244,10 +345,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -1.6, -1.5, 0 ) ]
+"values": [ Vector3( -1.6, -1.5, 0 ), Vector3( -1.6, -1.5, 0 ), Vector3( -1.6, -1.5, -2 ), Vector3( -1.6, -1.5, -2 ), Vector3( -1.6, -1.5, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("hand1:rotation_degrees")
@@ -256,10 +357,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 13, 100, 0 ) ]
+"values": [ Vector3( 13, 100, 0 ), Vector3( 13, 100, 0 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("hand1:scale")
@@ -268,10 +369,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("head:translation")
@@ -280,10 +381,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.35, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.487619, 0 ) ]
+"values": [ Vector3( 0, 0.487619, 0 ), Vector3( 0, 0.488, -2 ), Vector3( 0, 0.488, -2 ), Vector3( 0, 0.487619, 0 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("head:rotation_degrees")
@@ -292,10 +393,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("head:scale")
@@ -304,10 +405,70 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("hand1/hitbox:is_active")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("hand2/hitbox:is_active")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("hand1/hand:mesh:material:albedo_color")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.05, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("head:mesh:material:albedo_color")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0.05, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("hand2/hand:mesh:material:albedo_color")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.05, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -423,7 +584,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25, 0.45, 0.6, 1, 1.2 ),
-"transitions": PoolRealArray( 2, 1, 0.25, 1, 3, 0.25 ),
+"transitions": PoolRealArray( 2, 1, 0.25, 1, 3, 1 ),
 "update": 0,
 "values": [ Vector3( 1.6, -1, 0 ), Vector3( 1.6, 0, 1.25 ), Vector3( 1.6, 0, 1.25 ), Vector3( 1.6, 0, -8 ), Vector3( 1.6, 0, -8 ), Vector3( 1.6, 0, 1.25 ) ]
 }
@@ -435,9 +596,9 @@ tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.25, 0.45, 0.6, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 0.5, 1, 3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ), Vector3( 1.6, 1, 0 ) ]
+"values": [ Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ), Vector3( -13, 80, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("hand2:scale")
@@ -447,9 +608,9 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0, 0.25, 0.45, 0.5, 0.55, 1.1, 1.15, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 0.5, 1, 1, 1, 1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 0.5, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.125, 1.125, 2 ), Vector3( 1.25, 1.25, 1.25 ), Vector3( 1.25, 1.25, 1.25 ), Vector3( 1, 1, 2 ), Vector3( 1, 1, 1 ) ]
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 2, 1.125, 1.125 ), Vector3( 1.25, 1.25, 1.25 ), Vector3( 1.25, 1.25, 1.25 ), Vector3( 2, 1, 1 ), Vector3( 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("hand1:translation")
@@ -498,6 +659,42 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("hand1/hand:mesh:material:albedo_color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("hand2/hand:mesh:material:albedo_color")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("head:mesh:material:albedo_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -602,11 +799,17 @@ shape = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487619, 0 )
 mesh = SubResource( 2 )
 
+[node name="head_outline" type="MeshInstance" parent="KinematicBody/head"]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0 )
+mesh = SubResource( 31 )
+skeleton = NodePath("../..")
+
 [node name="hand1" type="Spatial" parent="KinematicBody"]
 transform = Transform( 0.173648, -0.221534, -0.959567, 0, -0.97437, 0.224951, 0.984808, 0.0390623, 0.169198, -1.6, -0.9, 0 )
 
 [node name="hitbox" type="Area" parent="KinematicBody/hand1"]
 transform = Transform( 0.99638, -0.0849995, 0, 0.0849995, 0.996381, 0, 0, 0, -0.999999, 0.0419094, -0.0534662, 0.231587 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody/hand1/hitbox"]
 transform = Transform( 1, 7.45058e-08, -2.98023e-08, 7.45058e-08, 1, -5.72763e-08, 1.78814e-07, -5.21541e-08, 1, -0.0189608, 0.0410796, 0.250934 )
@@ -615,6 +818,11 @@ shape = SubResource( 23 )
 [node name="hand" type="MeshInstance" parent="KinematicBody/hand1"]
 transform = Transform( 1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0 )
 mesh = SubResource( 22 )
+
+[node name="hand_outline" type="MeshInstance" parent="KinematicBody/hand1/hand"]
+transform = Transform( 1.1, 0, 0, 0, 1.1, -6.14673e-09, 0, 6.14673e-09, 1.1, 0, 0, 0 )
+mesh = SubResource( 33 )
+skeleton = NodePath("../..")
 
 [node name="hand2" type="Spatial" parent="KinematicBody"]
 transform = Transform( -0.173648, 0.221534, -0.959567, 0, -0.97437, -0.224951, 0.984808, 0.0390623, -0.169198, 1.6, -0.9, 0.000195554 )
@@ -630,14 +838,20 @@ shape = SubResource( 24 )
 
 [node name="hand" type="MeshInstance" parent="KinematicBody/hand2"]
 transform = Transform( 1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0 )
-mesh = SubResource( 22 )
+mesh = SubResource( 29 )
+
+[node name="hand_outline" type="MeshInstance" parent="KinematicBody/hand2/hand"]
+transform = Transform( 1.1, -7.45058e-09, 1.49012e-08, -3.72529e-09, 1.1, 1.21072e-08, 1.49012e-08, -9.31323e-09, 1.1, 0, 0, 0 )
+mesh = SubResource( 35 )
+skeleton = NodePath("../..")
 
 [node name="Camera" type="Camera" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.5, 7.5 )
 current = true
+fov = 80.0
 
 [node name="health_monitor" type="Label3D" parent="KinematicBody/Camera"]
-transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 3.62279, -6.586 )
+transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, -2.5, 4.9, -6.5 )
 pixel_size = 0.05
 billboard = 1
 shaded = true
@@ -658,5 +872,7 @@ anims/idle = SubResource( 18 )
 anims/punch = SubResource( 19 )
 anims/walk = SubResource( 16 )
 blend_times = [ "Default Animation Template", "idle", 0.2, "Default Animation Template", "walk", 0.2, "punch", "idle", 0.1, "punch", "punch", 0.2, "punch", "walk", 0.1, "walk", "Default Animation Template", 0.3, "walk", "RESET", 0.3, "walk", "idle", 0.1, "walk", "walk", 0.1 ]
+
+[node name="Label3D" type="Label3D" parent="KinematicBody"]
 
 [connection signal="body_entered" from="KinematicBody/hand2/hitbox" to="KinematicBody" method="_on_hitbox_2_body_entered"]

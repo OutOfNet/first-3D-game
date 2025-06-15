@@ -14,3 +14,4 @@ mono_crash.*.json
 # Exported game
 *.exe
 *.vpk
+/exported_game

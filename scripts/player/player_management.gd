@@ -88,10 +88,18 @@ func take_damage(amount, source):
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
+		get_node("AnimationPlayer").play("hurt")
 	elif amount < health && source == "internal":
 		health -= amount
+		is_invincible = true
+		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
+		is_invincible = false
 	else:
 		health -= amount
+		is_invincible = true
+		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
+		is_invincible = false
+		get_node("AnimationPlayer").play("hurt")
 
 func heal(amount):
 	if health + amount < MAX_HEALTH:
@@ -118,7 +126,7 @@ func rotate_camera(rotate_direction):
 		target_rotation.x = rotation.y + 0.785398
 		# Smoothly rotates the player along with the camera
 		while rotation.y <= target_rotation.x - 0.02:
-			rotation.y -= (rotation.y - target_rotation.x) / 4
+			rotation.y -= (rotation.y - target_rotation.x) / 3
 			yield(get_tree().create_timer(0.0125), "timeout")
 		# When close enough, snaps the rotation to the target rotation
 		rotation.y = target_rotation.x
@@ -131,7 +139,7 @@ func rotate_camera(rotate_direction):
 		target_rotation.x = rotation.y - 0.785398
 		# Smoothly rotates the player along with the camera
 		while rotation.y >= target_rotation.x + 0.02:
-			rotation.y -= (rotation.y - target_rotation.x) / 4
+			rotation.y -= (rotation.y - target_rotation.x) / 3
 			yield(get_tree().create_timer(0.0125), "timeout")
 		# When close enough, snaps the rotation to the target rotation
 		rotation.y = target_rotation.x
@@ -181,7 +189,7 @@ func _input(_event):
 			target_rotation.y = camera.rotation.x + 0.5
 			# Smoothly rotates the camera upwards.
 			while camera.rotation.x <= target_rotation.y - 0.025:
-				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 4
+				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 3
 				yield(get_tree().create_timer(0.0125), "timeout")
 			camera.rotation.x = target_rotation.y
 	elif Input.is_action_just_pressed("camera_down"):
@@ -193,7 +201,7 @@ func _input(_event):
 			target_rotation.y = camera.rotation.x - 0.5
 			# Smoothly rotates the camera downwards.
 			while camera.rotation.x >= target_rotation.y + 0.025:
-				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 4
+				camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 3
 				yield(get_tree().create_timer(0.0125), "timeout")
 			camera.rotation.x = target_rotation.y
 	if Input.is_action_just_released("camera_down") or Input.is_action_just_released("camera_up"):
