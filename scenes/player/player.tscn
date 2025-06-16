@@ -869,7 +869,7 @@ anims/punch = SubResource( 19 )
 anims/walk = SubResource( 16 )
 blend_times = [ "Default Animation Template", "idle", 0.2, "Default Animation Template", "walk", 0.2, "punch", "idle", 0.1, "punch", "punch", 0.2, "punch", "walk", 0.1, "walk", "Default Animation Template", 0.3, "walk", "RESET", 0.3, "walk", "idle", 0.1, "walk", "walk", 0.1 ]
 
-[node name="damage_indicator" type="Label3D" parent="KinematicBody"]
+[node name="damage_indicator2" type="Label3D" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 3 )
 pixel_size = 0.03
 billboard = 1
@@ -878,5 +878,8 @@ font = ExtResource( 4 )
 vertical_alignment = 2
 width = 3.0
 script = ExtResource( 5 )
+
+[node name="CPUParticles" type="CPUParticles" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 
 [connection signal="body_entered" from="KinematicBody/hand2/hitbox" to="KinematicBody" method="_on_hitbox_2_body_entered"]
