@@ -80,22 +80,26 @@ func take_damage(amount, source):
 		pass
 	elif amount >= health && source == "internal":
 		health = 0
+		get_node("damage_indicator").display_damage("damage", amount)
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 	elif amount >= health && source == "external":
 		health = 0
+		get_node("damage_indicator").display_damage("damage", amount)
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 		get_node("AnimationPlayer").play("hurt")
 	elif amount < health && source == "internal":
 		health -= amount
+		get_node("damage_indicator").display_damage("damage", amount)
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 	else:
 		health -= amount
+		get_node("damage_indicator").display_damage("damage", amount)
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
@@ -104,8 +108,10 @@ func take_damage(amount, source):
 func heal(amount):
 	if health + amount < MAX_HEALTH:
 		health += amount
+		get_node("damage_indicator").display_damage("heal", amount)
 	else:
 		health = MAX_HEALTH
+		get_node("damage_indicator").display_damage("heal", amount)
 
 func deal_damage(amount, target):
 	if target.has_method("take_damage") == true:

@@ -8,4 +8,4 @@ func _ready():
 
 
 func _process(_delta):
-	text = str("Max Health : ", player.MAX_HEALTH, " | Health : ", player.health)
+	text = str("Max Health : ", player.MAX_HEALTH, " | Health : ", player.health, " | FPS : ", Engine.get_frames_per_second(), " | Frame time : ", 1/Engine.get_frames_per_second(), "ms")
