@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/player/player_management.gd" type="Script" id=1]
-[ext_resource path="res://scripts/player/health_monitor.gd" type="Script" id=2]
+[ext_resource path="res://scripts/UI/stats_monitor.gd" type="Script" id=2]
 [ext_resource path="res://scripts/player/hitboxes/punch_hitbox.gd" type="Script" id=3]
-[ext_resource path="res://assets/fonts/HomeVideo.tres" type="DynamicFont" id=4]
-[ext_resource path="res://scripts/damage_indicators/damage_indicator.gd" type="Script" id=5]
+[ext_resource path="res://scripts/UI/damage_indicators/heal_indicator.gd" type="Script" id=4]
+[ext_resource path="res://scripts/UI/damage_indicators/damage_indicator.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/particles/damage_indicators/10_damage_indicator.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/particles/healing_indicators/12_heal_indicator.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape" id=13]
 height = 2.40983
@@ -70,6 +72,14 @@ radius = 0.75
 height = 1.5
 radial_segments = 8
 rings = 4
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/HomeVideo-BLG6G.ttf"
+
+[sub_resource type="DynamicFont" id=38]
+size = 12
+outline_size = 1
+font_data = SubResource( 1 )
 
 [sub_resource type="Animation" id=17]
 resource_name = "Default Animation Template"
@@ -558,7 +568,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=19]
 resource_name = "punch"
 length = 1.35
-step = 0.025
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:translation")
 tracks/0/interp = 1
@@ -781,6 +791,15 @@ tracks/6/keys = {
 "values": [ Vector3( 1, 1, 1 ) ]
 }
 
+[sub_resource type="Curve" id=36]
+min_value = -100.0
+max_value = 700.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.7, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.8, 600 ), 0.0, 0.0, 0, 0, Vector2( 1, -6.19318 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=37]
+max_value = 2.0
+_data = [ Vector2( 0, 0 ), 0.0, 10.0, 0, 0, Vector2( 0.3, 1 ), -4.0, -4.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0 ]
+
 [node name="Player" type="Spatial"]
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
@@ -845,14 +864,18 @@ transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0
 current = true
 fov = 80.0
 
-[node name="stats_monitor" type="Label3D" parent="KinematicBody/Camera"]
-transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, -1.5, 4.9, -6.5 )
-pixel_size = 0.035
-billboard = 1
-shaded = true
-modulate = Color( 0.666667, 0.898039, 1, 1 )
-text = "Max Health : 150"
-font = ExtResource( 4 )
+[node name="Stats monitor" type="Label" parent="KinematicBody/Camera"]
+margin_left = 3.0
+margin_top = 1.0
+margin_right = 43.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.0352941, 0.431373, 0.694118 )
+custom_constants/shadow_offset_x = -2
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 38 )
+text = "Test"
 script = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="KinematicBody"]
@@ -869,17 +892,37 @@ anims/punch = SubResource( 19 )
 anims/walk = SubResource( 16 )
 blend_times = [ "Default Animation Template", "idle", 0.2, "Default Animation Template", "walk", 0.2, "punch", "idle", 0.1, "punch", "punch", 0.2, "punch", "walk", 0.1, "walk", "Default Animation Template", 0.3, "walk", "RESET", 0.3, "walk", "idle", 0.1, "walk", "walk", 0.1 ]
 
-[node name="damage_indicator2" type="Label3D" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 3 )
-pixel_size = 0.03
-billboard = 1
-alpha_cut = 1
-font = ExtResource( 4 )
-vertical_alignment = 2
-width = 3.0
+[node name="damage_indicators" type="Node" parent="KinematicBody"]
+
+[node name="10_damage" type="CPUParticles2D" parent="KinematicBody/damage_indicators"]
+position = Vector2( 240, 120 )
+scale = Vector2( 0.75, 0.75 )
+emitting = false
+amount = 16
+texture = ExtResource( 6 )
+gravity = Vector2( 0, -0.001 )
+linear_accel = 50.0
+linear_accel_random = 0.2
+linear_accel_curve = SubResource( 36 )
 script = ExtResource( 5 )
 
-[node name="CPUParticles" type="CPUParticles" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+[node name="heal_indicators" type="Node" parent="KinematicBody"]
+
+[node name="12_heal" type="CPUParticles2D" parent="KinematicBody/heal_indicators"]
+position = Vector2( 240, 120 )
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 90
+lifetime = 1.5
+texture = ExtResource( 7 )
+emission_shape = 2
+emission_rect_extents = Vector2( 50, 50 )
+gravity = Vector2( 0, -0.001 )
+linear_accel = 50.0
+linear_accel_random = 0.2
+linear_accel_curve = SubResource( 36 )
+scale_amount_curve = SubResource( 37 )
+script = ExtResource( 4 )
 
 [connection signal="body_entered" from="KinematicBody/hand2/hitbox" to="KinematicBody" method="_on_hitbox_2_body_entered"]
+[connection signal="body_exited" from="KinematicBody/hand2/hitbox" to="KinematicBody" method="_on_hitbox_2_body_exited"]

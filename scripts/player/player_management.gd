@@ -60,6 +60,10 @@ var camera_angles = [0, 0.785398, 1.570796, 2.356194, 3.141592, -3.141593, -2.35
 func _ready():
 	camera = get_node("Camera")
 
+func display_damage(amount):
+	if amount == 10:
+		get_node("damage_indicator").display_damage()
+
 func find_closest(value, array) -> float:
 	
 	var best_match = null
@@ -80,26 +84,26 @@ func take_damage(amount, source):
 		pass
 	elif amount >= health && source == "internal":
 		health = 0
-		get_node("damage_indicator").display_damage("damage", amount)
+		get_node("damage_indicators/10_damage").display_damage()
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 	elif amount >= health && source == "external":
 		health = 0
-		get_node("damage_indicator").display_damage("damage", amount)
+		get_node("damage_indicators/10_damage").display_damage()
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 		get_node("AnimationPlayer").play("hurt")
 	elif amount < health && source == "internal":
 		health -= amount
-		get_node("damage_indicator").display_damage("damage", amount)
+		get_node("damage_indicators/10_damage").display_damage()
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
 	else:
 		health -= amount
-		get_node("damage_indicator").display_damage("damage", amount)
+		get_node("damage_indicators/10_damage").display_damage()
 		is_invincible = true
 		yield(get_tree().create_timer(INVINCIBILITY_TIME), "timeout")
 		is_invincible = false
@@ -108,10 +112,10 @@ func take_damage(amount, source):
 func heal(amount):
 	if health + amount < MAX_HEALTH:
 		health += amount
-		get_node("damage_indicator").display_damage("heal", amount)
 	else:
 		health = MAX_HEALTH
-		get_node("damage_indicator").display_damage("heal", amount)
+		if amount == 12:
+			get_node("heal_indicators/12_heal").display_damage()
 
 func deal_damage(amount, target):
 	if target.has_method("take_damage") == true:
@@ -122,7 +126,7 @@ func deal_damage(amount, target):
 				pass
 			else:
 				heal(amount * .6)
-			target.take_damage(amount)
+				target.take_damage(amount)
 
 func rotate_camera(rotate_direction):
 	if rotate_direction == "left" && is_rotating == false:
@@ -191,6 +195,8 @@ func _input(_event):
 			is_rotating = true
 			if camera.rotation.x != CAMERA_NEUTRAL_ROTATION:
 				camera.rotation.x = CAMERA_NEUTRAL_ROTATION
+			get_node("damage_indicators/10_damage").position.y = 210
+			get_node("heal_indicators/12_heal").position.y = 210
 			yield(get_tree().create_timer(0.02), "timeout")
 			target_rotation.y = camera.rotation.x + 0.5
 			# Smoothly rotates the camera upwards.
@@ -203,6 +209,8 @@ func _input(_event):
 			is_rotating = true
 			if camera.rotation.x != CAMERA_NEUTRAL_ROTATION:
 				camera.rotation.x = CAMERA_NEUTRAL_ROTATION
+			get_node("damage_indicators/10_damage").position.y = 40
+			get_node("heal_indicators/12_heal").position.y = 40
 			yield(get_tree().create_timer(0.02), "timeout")
 			target_rotation.y = camera.rotation.x - 0.5
 			# Smoothly rotates the camera downwards.
@@ -213,6 +221,8 @@ func _input(_event):
 	if Input.is_action_just_released("camera_down") or Input.is_action_just_released("camera_up"):
 		target_rotation.y = CAMERA_NEUTRAL_ROTATION
 		yield(get_tree().create_timer(0.02), "timeout")
+		get_node("damage_indicators/10_damage").position.y = 130
+		get_node("heal_indicators/12_heal").position.y = 120
 		# Smoothly rotates the camera towards the neutral rotation.
 		while camera.rotation.x >= target_rotation.y + 0.025 or camera.rotation.x <= target_rotation.y - 0.025:
 			camera.rotation.x -= (camera.rotation.x - target_rotation.y) / 4
@@ -231,12 +241,21 @@ func _input(_event):
 		for _i in range(0, default_cooldowns.attack_1 * 10):
 			cooldowns_left.attack_1 -= 0.1
 			yield(get_tree().create_timer(0.1), "timeout")
-			print("Attack 1 cooldown : ", cooldowns_left.attack_1)
 		cooldowns_left.attack_1 = default_cooldowns.attack_1
 		attack_cooldowns.attack_1 = false
 
 
 func _on_hitbox_2_body_entered(body):
+	if get_node("hand2/hitbox").is_hitbox_active() == true && "health" in body && "is_invincible" in body && body.has_method("take_damage") == true:
+		if attacks_active.attack_1 == true:
+			if body.is_invincible == true:
+				pass
+			else:
+				deal_damage(attack_damage.attack_1, body)
+				print(body.health)
+
+
+func _on_hitbox_2_body_exited(body):
 	if get_node("hand2/hitbox").is_hitbox_active() == true && "health" in body && "is_invincible" in body && body.has_method("take_damage") == true:
 		if attacks_active.attack_1 == true:
 			if body.is_invincible == true:
